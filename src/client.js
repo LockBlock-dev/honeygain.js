@@ -1,5 +1,6 @@
 const axios = require("axios").default;
 const errors = require("./errors");
+const pkg = require("../package.json");
 
 class Client {
     /**
@@ -35,9 +36,7 @@ class Client {
             method,
             url: `${this.API_URL}/${path}`,
             headers: {
-                "User-Agent": `honeygain.js ${
-                    require("../package.json").version
-                } (https://github.com/LockBlock-dev/honeygain.js)`,
+                "User-Agent": `honeygain.js ${pkg.version} (https://github.com/LockBlock-dev/honeygain.js)`,
                 "Content-Type": "application/json",
                 "Accept-Encoding": "UTF8",
                 Authorization: this.#authorization,
