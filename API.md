@@ -1,575 +1,380 @@
-# Methods
+## Classes
 
 <dl>
-<dt><a href="#balances">balances()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user balances.</p>
-</dd>
-<dt><a href="#changePassword">changePassword(currentPassword, newPassword)</a> ⇒ <code>Promise</code></dt>
-<dd><p>Change user password.</p>
-</dd>
-<dt><a href="#devices">devices()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user devices.</p>
-</dd>
-<dt><a href="#jumpTaskEarnings">jumpTaskEarnings()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user Jump Task earnings.</p>
-</dd>
-<dt><a href="#jumpTaskStats">jumpTaskStats()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user Jump Task stats.</p>
-</dd>
-<dt><a href="#jumpTaskToday">jumpTaskToday()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user jumpTask earnings for the day.</p>
-</dd>
-<dt><a href="#login">login(authorization)</a> ⇒ <code>Promise</code></dt>
-<dd><p>Log into HoneyGain.</p>
-</dd>
-<dt><a href="#me">me()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get your user data.</p>
-</dd>
-<dt><a href="#notifications">notifications()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user notifications.</p>
-</dd>
-<dt><a href="#payouts">payouts()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user payouts.</p>
-</dd>
-<dt><a href="#referrals">referrals()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user referrals.</p>
-</dd>
-<dt><a href="#referralsEarnings">referralsEarnings()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get referrals earnings.</p>
-</dd>
-<dt><a href="#stats">stats()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user stats.</p>
-</dd>
-<dt><a href="#today">today()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user earnings for the day.</p>
-</dd>
-<dt><a href="#tos">tos()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get your tos status.</p>
-</dd>
-<dt><a href="#transactions">transactions()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user transactions.</p>
-</dd>
-<dt><a href="#walletStats">walletStats()</a> ⇒ <code>Promise</code></dt>
-<dd><p>Get user wallet stats.</p>
-</dd>
+<dt><a href="#Client">Client</a></dt>
+<dd></dd>
+<dt><a href="#FatalError">FatalError</a> ⇐ <code><a href="#new_BaseError_new">BaseError</a></code></dt>
+<dd></dd>
+<dt><a href="#APIError">APIError</a> ⇐ <code><a href="#new_BaseError_new">BaseError</a></code></dt>
+<dd></dd>
+<dt><a href="#ParseError">ParseError</a> ⇐ <code><a href="#new_BaseError_new">BaseError</a></code></dt>
+<dd></dd>
 </dl>
 
-# Errors
+<a name="Client"></a>
 
-<dl>
-<dt><a href="APIError">APIError</a> ⇒ <code>Error</code></dt>
-<dd><p>Error related to the API.</p>
-</dd>
-<dt><a href="FatalError">FatalError</a> ⇒ <code>Error</code></dt>
-<dd><p>Fatal error in the program. (you don't want this one)</p>
-</dd>
-<dt><a href="ParseError">ParseError</a> ⇒ <code>Error</code></dt>
-<dd><p>Error related to a parsing error in the response from the API.</p>
-</dd>
-</dl>
+## Client
+**Kind**: global class  
 
----
+* [Client](#Client)
+    * [new Client()](#new_Client_new)
+    * [.API_URL](#Client+API_URL) : <code>string</code>
+    * [.login(authorization)](#Client+login) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.me()](#Client+me) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.tos()](#Client+tos) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.devices()](#Client+devices) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.payouts()](#Client+payouts) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.transactions()](#Client+transactions) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.stats()](#Client+stats) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.referrals()](#Client+referrals) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.balances()](#Client+balances) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.notifications()](#Client+notifications) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.referralsEarnings()](#Client+referralsEarnings) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.jumpTaskEarnings()](#Client+jumpTaskEarnings) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.jumpTaskStats()](#Client+jumpTaskStats) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.jumpTaskToday()](#Client+jumpTaskToday) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.walletStats()](#Client+walletStats) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.today()](#Client+today) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.devicesActivity([params])](#Client+devicesActivity) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.changePassword(currentPassword, newPassword)](#Client+changePassword) ⇒ <code>Promise.&lt;Object&gt;</code>
 
-# Methods
+<a name="new_Client_new"></a>
 
-<a name="balances"></a>
+### new Client()
+The HoneyGain client
 
-## balances() ⇒ <code>Promise</code>
-
-Get user balances.
-
-**Kind**: method  
-**Returns**:
-
+**Example**  
 ```js
-{
-    "meta": Object | null,
-    "data": Object,
-}
+const client = new Client();
 ```
+<a name="Client+API_URL"></a>
 
-**Example**
+### client.API\_URL : <code>string</code>
+The base API URL
 
-```js
-client.balances();
-```
+**Kind**: instance property of [<code>Client</code>](#Client)  
+<a name="Client+login"></a>
 
-<a name="changePassword"></a>
-
-## changePassword(currentPassword, newPassword) ⇒ <code>Promise</code>
-
-Change user password.
-
-**Kind**: method  
-**Returns**:
-
-| Param           | Type                | Description                     |
-| --------------- | ------------------- | ------------------------------- |
-| currentPassword | <code>String</code> | your current HoneyGain password |
-| newPassword     | <code>String</code> | your new HoneyGain password     |
-
-**Example**
-
-```js
-client.changePassword("myOldPass", "myNewPass");
-```
-
-<a name="devices"></a>
-
-## devices() ⇒ <code>Promise</code>
-
-Get user devices.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "meta": Object | null,
-    "data": Device[],
-}
-```
-
-```js
-Device {
-    id: String,
-    manufacturer: String,
-    model: String,
-    title: String,
-    platform: String,
-    version: String,
-    streaming_enabled: Boolean,
-    ip: String,
-    status: String,
-    last_active_time: String,
-}
-```
-
-**Example**
-
-```js
-client.devices();
-```
-
-<a name="jumpTaskEarnings"></a>
-
-## jumpTaskEarnings() ⇒ <code>Promise</code>
-
-Get user Jump Task earnings.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "meta": Object | null,
-    "data": Object,
-}
-```
-
-**Example**
-
-```js
-client.jumpTaskEarnings();
-```
-
-<a name="jumpTaskStats"></a>
-
-## jumpTaskStats() ⇒ <code>Promise</code>
-
-Get user Jump Task stats.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    Object,
-}
-```
-
-**Example**
-
-```js
-client.jumpTaskStats();
-```
-
-<a name="jumpTaskToday"></a>
-
-## jumpTaskToday() ⇒ <code>Promise</code>
-
-Get user jumpTask earnings for the day.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "total": Object,
-    "winning": Object,
-    "referral": Object,
-    "other": Object,
-    "bonus": Object,
-    "cdn": Object,
-    "gathering": Object,
-}
-```
-
-**Example**
-
-```js
-client.jumpTaskToday();
-```
-
-<a name="login"></a>
-
-## login(authorization) ⇒ <code>Promise</code>
-
+### client.login(authorization) ⇒ <code>Promise.&lt;Object&gt;</code>
 Log into HoneyGain.
 
-**Kind**: method  
-**Returns**:
+**Kind**: instance method of [<code>Client</code>](#Client)  
 
-```js
-{
-    status: String,
-}
-```
+| Param | Type | Description |
+| --- | --- | --- |
+| authorization | <code>string</code> | Authorization token |
 
-| Param         | Type                | Description         |
-| ------------- | ------------------- | ------------------- |
-| authorization | <code>String</code> | Authorization token |
-
-**Example**
-
+**Example**  
 ```js
 client.login("eyJ0eXAi...xaL5x4");
 ```
+<a name="Client+me"></a>
 
-<a name="me"></a>
-
-## me() ⇒ <code>Promise</code>
-
+### client.me() ⇒ <code>Promise.&lt;Object&gt;</code>
 Get your user data.
 
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    data: Object,
-}
-```
-
-**Example**
-
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
 ```js
 client.me();
 ```
+<a name="Client+tos"></a>
 
-<a name="notifications"></a>
-
-## notifications() ⇒ <code>Promise</code>
-
-Get user notifications.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "meta": Object | null,
-    "data": Array,
-}
-```
-
-**Example**
-
-```js
-client.notifications();
-```
-
-<a name="payouts"></a>
-
-## payouts() ⇒ <code>Promise</code>
-
-Get user payouts.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "meta": Object | null,
-    "data": Array,
-}
-```
-
-**Example**
-
-```js
-client.payouts();
-```
-
-<a name="referrals"></a>
-
-## referrals() ⇒ <code>Promise</code>
-
-Get user referrals.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "meta": Object | null,
-    "data": Array,
-}
-```
-
-**Example**
-
-```js
-client.referrals();
-```
-
-<a name="referralsEarnings"></a>
-
-## referralsEarnings() ⇒ <code>Promise</code>
-
-Get referrals earnings.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "count": Number,
-    "total_earnings": Number,
-    "average_earnings": Number,
-    "first_referrals": Array,
-}
-```
-
-**Example**
-
-```js
-client.referralsEarnings();
-```
-
-<a name="stats"></a>
-
-## stats() ⇒ <code>Promise</code>
-
-Get user stats.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    Object,
-}
-```
-
-**Example**
-
-```js
-client.stats();
-```
-
-<a name="today"></a>
-
-## today() ⇒ <code>Promise</code>
-
-Get user earnings for the day.
-
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "total": Object,
-    "winning": Object,
-    "referral": Object,
-    "other": Object,
-    "bonus": Object,
-    "cdn": Object,
-    "gathering": Object,
-    "total_credits": Number,
-    "gathering_bytes": Number,
-    "streaming_seconds": Number,
-    "winning_credits": Number,
-    "referral_credits": Number,
-    "other_credits": Number,
-}
-```
-
-**Example**
-
-```js
-client.today();
-```
-
-<a name="tos"></a>
-
-## tos() ⇒ <code>Promise</code>
-
+### client.tos() ⇒ <code>Promise.&lt;Object&gt;</code>
 Get your tos status.
 
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "meta": null,
-    "data": Object,
-}
-```
-
-**Example**
-
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
 ```js
 client.tos();
 ```
+<a name="Client+devices"></a>
 
-<a name="transactions"></a>
+### client.devices() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user devices.
 
-## transactions() ⇒ <code>Promise</code>
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.devices();
+```
+<a name="Client+payouts"></a>
 
+### client.payouts() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user payouts.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.payouts();
+```
+<a name="Client+transactions"></a>
+
+### client.transactions() ⇒ <code>Promise.&lt;Object&gt;</code>
 Get user transactions.
 
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "meta": Object | null,
-    "data": Array,
-}
-```
-
-**Example**
-
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
 ```js
 client.transactions();
 ```
+<a name="Client+stats"></a>
 
-<a name="walletStats"></a>
+### client.stats() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user stats.
 
-## walletStats() ⇒ <code>Promise</code>
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.stats();
+```
+<a name="Client+referrals"></a>
 
+### client.referrals() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user referrals.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.referrals();
+```
+<a name="Client+balances"></a>
+
+### client.balances() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user balances.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.balances();
+```
+<a name="Client+notifications"></a>
+
+### client.notifications() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user notifications.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.notifications();
+```
+<a name="Client+referralsEarnings"></a>
+
+### client.referralsEarnings() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get referrals earnings.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.referralsEarnings();
+```
+<a name="Client+jumpTaskEarnings"></a>
+
+### client.jumpTaskEarnings() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user Jump Task earnings.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.jumpTaskEarnings();
+```
+<a name="Client+jumpTaskStats"></a>
+
+### client.jumpTaskStats() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user Jump Task stats.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.jumpTaskStats();
+```
+<a name="Client+jumpTaskToday"></a>
+
+### client.jumpTaskToday() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user jumpTask earnings for the day.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.today();
+```
+<a name="Client+walletStats"></a>
+
+### client.walletStats() ⇒ <code>Promise.&lt;Object&gt;</code>
 Get user wallet stats.
 
-**Kind**: method  
-**Returns**:
-
-```js
-{
-    "meta": Object | null,
-    "data": Object,
-}
-```
-
-**Example**
-
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
 ```js
 client.walletStats();
 ```
+<a name="Client+today"></a>
 
-# Errors
+### client.today() ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user earnings for the day.
 
-<a name="APIError"></a>
-
-## APIError ⇒ <code>Error</code>
-
-Error related to the API
-
-**Returns**:
-
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
 ```js
-{
-    message: String,
-    type: String,
-    status: Number,
-    method: String,
-    url: String,
-    title: String,
-    details: String,
-    code: Number,
-}
+client.today();
 ```
+<a name="Client+devicesActivity"></a>
 
-**Example**
+### client.devicesActivity([params]) ⇒ <code>Promise.&lt;Object&gt;</code>
+Get user devices activity.
 
+**Kind**: instance method of [<code>Client</code>](#Client)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [params] | <code>Object</code> | <code>{}</code> | maximum time window of 30 days |
+| params.date_from | <code>string</code> |  | start date |
+| params.date_to | <code>string</code> |  | end date (maximum tomorrow) |
+
+**Example**  
 ```js
-{
-    message: "Request failed with status code 403",
-    type: 'APIError',
-    status: 403,
-    method: 'GET',
-    url: 'https://dashboard.honeygain.com/api/v1/users/me',
-    title: "access_token_expired",
-    details: ""
-}
+client.devicesActivity({ date_from: "2022-08-01", date_to: "2022-08-05" });
 ```
+<a name="Client+changePassword"></a>
 
+### client.changePassword(currentPassword, newPassword) ⇒ <code>Promise.&lt;Object&gt;</code>
+Change user password.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| currentPassword | <code>string</code> | your current HoneyGain password |
+| newPassword | <code>string</code> | your new HoneyGain password |
+
+**Example**  
 ```js
-{
-    message: "Invalid JWT Token",
-    type: 'APIError',
-    status: 401,
-    method: 'GET',
-    url: 'https://dashboard.honeygain.com/api/v1/users/me',
-    code: 401
+client.changePassword("myOldPass", "myNewPass");
 ```
-
 <a name="FatalError"></a>
 
-## FatalError ⇒ <code>Error</code>
+## FatalError ⇐ [<code>BaseError</code>](#new_BaseError_new)
+**Kind**: global class  
+**Extends**: [<code>BaseError</code>](#new_BaseError_new)  
 
-Fatal error in the program. (you don't want this one)
+* [FatalError](#FatalError) ⇐ [<code>BaseError</code>](#new_BaseError_new)
+    * [new FatalError(error)](#new_FatalError_new)
+    * [.type](#BaseError+type) : <code>string</code>
 
-**Kind**: method  
-**Returns**:
+<a name="new_FatalError_new"></a>
 
-```js
-{
-    message: String,
-    type: String,
-    stack: String
-}
-```
+### new FatalError(error)
+Represents a fatal error from the Client.
 
+
+| Param | Type | Description |
+| --- | --- | --- |
+| error | <code>string</code> \| <code>error</code> | error object or message |
+
+<a name="BaseError+type"></a>
+
+### fatalError.type : <code>string</code>
+error type
+
+**Kind**: instance property of [<code>FatalError</code>](#FatalError)  
+<a name="APIError"></a>
+
+## APIError ⇐ [<code>BaseError</code>](#new_BaseError_new)
+**Kind**: global class  
+**Extends**: [<code>BaseError</code>](#new_BaseError_new)  
+
+* [APIError](#APIError) ⇐ [<code>BaseError</code>](#new_BaseError_new)
+    * [new APIError(error, response, status, method, url)](#new_APIError_new)
+    * [.status](#APIError+status) : <code>string</code>
+    * [.method](#APIError+method) : <code>string</code>
+    * [.url](#APIError+url) : <code>string</code>
+    * [.type](#BaseError+type) : <code>string</code>
+
+<a name="new_APIError_new"></a>
+
+### new APIError(error, response, status, method, url)
+Represents an error from the API.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| error | <code>string</code> \| <code>error</code> | error message |
+| response | <code>object</code> | error response |
+| status | <code>string</code> | status type of the request |
+| method | <code>string</code> | method used for the request |
+| url | <code>string</code> | url of the request to the endpoint |
+
+<a name="APIError+status"></a>
+
+### apiError.status : <code>string</code>
+status type of the request
+
+**Kind**: instance property of [<code>APIError</code>](#APIError)  
+<a name="APIError+method"></a>
+
+### apiError.method : <code>string</code>
+method used for the request
+
+**Kind**: instance property of [<code>APIError</code>](#APIError)  
+<a name="APIError+url"></a>
+
+### apiError.url : <code>string</code>
+url of the request to the endpoint
+
+**Kind**: instance property of [<code>APIError</code>](#APIError)  
+<a name="BaseError+type"></a>
+
+### apiError.type : <code>string</code>
+error type
+
+**Kind**: instance property of [<code>APIError</code>](#APIError)  
 <a name="ParseError"></a>
 
-## ParseError ⇒ <code>Error</code>
+## ParseError ⇐ [<code>BaseError</code>](#new_BaseError_new)
+**Kind**: global class  
+**Extends**: [<code>BaseError</code>](#new_BaseError_new)  
 
-Error related to a parsing error in the response from the API.
+* [ParseError](#ParseError) ⇐ [<code>BaseError</code>](#new_BaseError_new)
+    * [new ParseError(message, status, method, url)](#new_ParseError_new)
+    * [.status](#ParseError+status) : <code>string</code>
+    * [.method](#ParseError+method) : <code>string</code>
+    * [.url](#ParseError+url) : <code>string</code>
+    * [.type](#BaseError+type) : <code>string</code>
 
-**Kind**: method  
-**Returns**:
+<a name="new_ParseError_new"></a>
 
-```js
-{
-    message: String,
-    type: String,
-    status: Number,
-    method: String,
-    url: String,
-    response: String|Object
-}
-```
+### new ParseError(message, status, method, url)
+Represents a parsing error.
 
-**Example**
 
-```js
-{
-    message: "Error parsing response",
-    type: 'ParseError',
-    status: 200,
-    method: 'GET',
-    url: 'https://dashboard.honeygain.com/api/v2/devices',
-    response: ""
-}
-```
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>String</code> | error message |
+| status | <code>String</code> | status type of the request |
+| method | <code>String</code> | method used for the request |
+| url | <code>String</code> | url of the request to the endpoint |
+
+<a name="ParseError+status"></a>
+
+### parseError.status : <code>string</code>
+status type of the request
+
+**Kind**: instance property of [<code>ParseError</code>](#ParseError)  
+<a name="ParseError+method"></a>
+
+### parseError.method : <code>string</code>
+method used for the request
+
+**Kind**: instance property of [<code>ParseError</code>](#ParseError)  
+<a name="ParseError+url"></a>
+
+### parseError.url : <code>string</code>
+url of the request to the endpoint
+
+**Kind**: instance property of [<code>ParseError</code>](#ParseError)  
+<a name="BaseError+type"></a>
+
+### parseError.type : <code>string</code>
+error type
+
+**Kind**: instance property of [<code>ParseError</code>](#ParseError)  

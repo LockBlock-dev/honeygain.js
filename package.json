@@ -1,6 +1,6 @@
 {
     "name": "honeygain.js",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "A JavaScript library for interacting with the HoneyGain API",
     "main": "src/client.js",
     "exports": {
@@ -8,10 +8,10 @@
         "import": "./esm/wrapper.js"
     },
     "dependencies": {
-        "axios": "^0.24.0"
+        "axios": "^0.27.2"
     },
     "scripts": {
-        "start": "node index.js"
+        "doc": "npx jsdoc2md src/*.js > API.md"
     },
     "repository": {
         "type": "git",
@@ -25,5 +25,8 @@
     "homepage": "https://github.com/LockBlock-dev/honeygain.js#readme",
     "keywords": [
         "API"
-    ]
+    ],
+    "devDependencies": {
+        "jsdoc-to-markdown": "^7.1.1"
+    }
 }

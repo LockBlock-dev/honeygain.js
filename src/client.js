@@ -131,6 +131,7 @@ class Client {
      * @returns {Promise<Object>}
      */
     transactions() {
+        //to do: add date_from date_to
         return this.#request("GET", "v1/transactions_history");
     }
 
@@ -140,6 +141,7 @@ class Client {
      * @returns {Promise<Object>}
      */
     stats() {
+        //to do: add date_from date_to (also for jmptstats)
         return this.#request("GET", "v1/earnings/stats");
     }
 
@@ -226,6 +228,18 @@ class Client {
     }
 
     /**
+     * Get user devices activity.
+     * @param {Object} [params = {}] - maximum time window of 30 days
+     * @param {string} params.date_from - start date
+     * @param {string} params.date_to - end date (maximum tomorrow)
+     * @example client.devicesActivity({ date_from: "2022-08-01", date_to: "2022-08-05" });
+     * @returns {Promise<Object>}
+     */
+    devicesActivity(params = {}) {
+        return this.#request("GET", `v2/devices/activity?${new URLSearchParams(params)}`);
+    }
+
+    /**
      * Change user password.
      * @param {string} currentPassword your current HoneyGain password
      * @param {string} newPassword your new HoneyGain password
@@ -236,6 +250,16 @@ class Client {
         return this.#request("PUT", "v1/users/passwords", {
             data: { current_password: currentPassword, new_password: newPassword },
         });
+    }
+
+    /**
+     * Delete your account.
+     * You will need to click on the link in the mail sent to your honeygain email!
+     * @example client.deleteAccount();
+     * @returns {Promise<Object>}
+     */
+    deleteAccount() {
+        return this.#request("POST", "v1/users/deletion_requests");
     }
 
     // /**
