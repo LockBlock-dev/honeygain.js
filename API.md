@@ -37,6 +37,9 @@
     * [.today()](#Client+today) ⇒ <code>Promise.&lt;Object&gt;</code>
     * [.devicesActivity([params])](#Client+devicesActivity) ⇒ <code>Promise.&lt;Object&gt;</code>
     * [.changePassword(currentPassword, newPassword)](#Client+changePassword) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.deleteAccount()](#Client+deleteAccount) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.notificationsAction([body])](#Client+notificationsAction) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.contestWinnings()](#Client+contestWinnings) ⇒ <code>Promise.&lt;Object&gt;</code>
 
 <a name="new_Client_new"></a>
 
@@ -250,6 +253,42 @@ Change user password.
 **Example**  
 ```js
 client.changePassword("myOldPass", "myNewPass");
+```
+<a name="Client+deleteAccount"></a>
+
+### client.deleteAccount() ⇒ <code>Promise.&lt;Object&gt;</code>
+Delete your account.
+You will need to click on the link in the mail sent to your honeygain email!
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.deleteAccount();
+```
+<a name="Client+notificationsAction"></a>
+
+### client.notificationsAction([body]) ⇒ <code>Promise.&lt;Object&gt;</code>
+Execute a notifications action.
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [body] | <code>Object</code> | <code>{}</code> | action |
+
+**Example**  
+```js
+client.notificationsAction({ campaign_id: "someID", action: "someAction", user_id: "userID" });
+```
+<a name="Client+contestWinnings"></a>
+
+### client.contestWinnings() ⇒ <code>Promise.&lt;Object&gt;</code>
+See your contest winnings (once a day).
+
+**Kind**: instance method of [<code>Client</code>](#Client)  
+**Example**  
+```js
+client.contestWinnings();
 ```
 <a name="FatalError"></a>
 

@@ -262,6 +262,28 @@ class Client {
         return this.#request("POST", "v1/users/deletion_requests");
     }
 
+    /**
+     * Execute a notifications action.
+     * @param {Object} [body = {}] - action
+     * @example client.notificationsAction({ campaign_id: "someID", action: "someAction", user_id: "userID" });
+     * @returns {Promise<Object>}
+     */
+    async notificationsAction(body = {}) {
+        const { data } = await this.me();
+        return this.#request("POST", `v1/notifications?user_id=${data.id}`, {
+            data: body,
+        });
+    }
+
+    /**
+     * See your contest winnings (once a day).
+     * @example client.contestWinnings();
+     * @returns {Promise<Object>}
+     */
+    contestWinnings() {
+        return this.#request("POST", "v1/contest_winnings");
+    }
+
     // /**
     //  * Redeem your balance.
     //  * @param {string} email paypal / amazon email
