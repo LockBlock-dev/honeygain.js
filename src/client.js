@@ -80,7 +80,7 @@ class Client {
      * @example client.login("eyJ0eXAi...xaL5x4");
      * @returns {Promise<Object>}
      */
-    async login(authorization) {
+    login(authorization) {
         this.#authorization = authorization;
 
         if (!this.#authorization.includes("Bearer"))
@@ -264,24 +264,34 @@ class Client {
 
     /**
      * Execute a notifications action.
+     * @param {string} notificationHash - notification hash
      * @param {Object} [body = {}] - action
      * @example client.notificationsAction({ campaign_id: "someID", action: "someAction", user_id: "userID" });
      * @returns {Promise<Object>}
      */
-    async notificationsAction(body = {}) {
-        const { data } = await this.me();
-        return this.#request("POST", `v1/notifications?user_id=${data.id}`, {
+    async notificationsAction(notificationHash, body = {}) {
+        return this.#request("POST", `v1/notifications/${notificationHash}/actions`, {
             data: body,
         });
     }
 
     /**
-     * See your contest winnings (once a day).
+     * Get your contest winnings (once a day).
      * @example client.contestWinnings();
      * @returns {Promise<Object>}
      */
     contestWinnings() {
         return this.#request("POST", "v1/contest_winnings");
+    }
+
+    /**
+     * Get information about a coupon/referral code.
+     * @param {string} code - coupon code
+     * @example client.coupon("freemoney");
+     * @return {Promise<Object>}
+     */
+    coupon(code) {
+        return this.#request("GET", `v1/coupons/${code}`);
     }
 
     // /**
