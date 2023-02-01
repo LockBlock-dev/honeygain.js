@@ -38,7 +38,6 @@ class Client {
             headers: {
                 "User-Agent": `honeygain.js ${pkg.version} (https://github.com/LockBlock-dev/honeygain.js)`,
                 "Content-Type": "application/json",
-                "Accept-Encoding": "UTF8",
                 Authorization: this.#authorization,
             },
             ...reqOptions,
